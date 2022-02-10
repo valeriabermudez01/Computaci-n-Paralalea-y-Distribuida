@@ -10,8 +10,15 @@
 #include <random>
 #include <cstdlib>
 #include<time.h>
+#include <chrono>
 
 using namespace std;
+
+	/*Función que genera un valor aleatorio */
+double randomNumber(double fMin, double fMax){
+	double f = (double)rand() / RAND_MAX;
+	return fMin + f* (fMax -fMin);
+}
 
 	/* Función Multiplicación Matrices:
 		Se requiere multiplicar las dos matrices : Adicionalmente 
@@ -20,12 +27,18 @@ using namespace std;
 vector<vector<double>> MultiMatriz(vector<vector<double>> Ma,
 								   vector<vector<double>> Mb){
 	int i,j,k;
-	vector<vector<double>> Mresultado(Ma.size(),vector<double>(Ma.size(),0));					   	
+	vector<vector<double>> Mresultado(Ma.size(),vector<double>(Ma.size(),0));
+	/*Hacemos una punta de prueba para tomar tiempo inicial */
+	auto startTime = chrono::high_resolution_clock::now();					   	
 	for(i=0;i<Ma.size();++i)
 		for(j=0;j<Ma.size();++j)
 			for(k=0;k<Ma.size();++k)
 				Mresultado[i][j] += Ma[i][k] *Mb[k][j];
-				
+	/*Hacemos una punta de prueba para tomar tiempo final */
+	auto endTime = chrono::high_resolution_clock::now();
+	chrono::duration<double, milli> tiempoTotal = endTime - startTime;
+	cout << "\n Tiempo: " << tiempoTotal.count() << "ms\n";					   				
+	
 	return Mresultado;
 }
 		
@@ -39,12 +52,12 @@ vector<vector<double>> InicializacionMatriz(vector<vector<double>> M){
 	int i,j;
 	double limInf = 0.001 , limSup = 9.999;
 	vector<vector<double>> Minicializada(M.size(), vector<double> (M.size(),0));
-	random_device rd;
+	/*random_device rd;
 	mt19937 gen(rd());
-	uniform_real_distribution<> dis(limInf,limSup); 
+	uniform_real_distribution<> dis(limInf,limSup); */
 	for(i=0;i<M.size();++i){
 			for(j=0;j<M.size();++j){ 
-				Minicializada[i][j] = dis(gen);
+				Minicializada[i][j] = randomNumber(limInf,limSup);
 			}
 		}
 	return Minicializada;
@@ -87,12 +100,12 @@ int main(int argc, char** argv) {
 	
 			
 	/*Se imprime M1 */
-	cout << "Se imprime M1" << "\n";
+	/*cout << "Se imprime M1" << "\n";
 	imprimirMatriz(M1);
 	cout <<"\n \n \n" ;
 	
 	/*Se imprime M2 */
-	cout << "Se imprime M2" << "\n";
+	/*cout << "Se imprime M2" << "\n";
 	imprimirMatriz(M2);
 	cout <<"\n \n \n" ;
 	
@@ -100,8 +113,8 @@ int main(int argc, char** argv) {
 	MR = MultiMatriz(M1,M2);
 	
 	/*Se imprime MR */
-	cout << "Se imprime MR" << "\n";
+	/*cout << "Se imprime MR" << "\n";
 	imprimirMatriz(MR);
 	cout <<"\n \n \n" ;
-
+ 	*/
 }
