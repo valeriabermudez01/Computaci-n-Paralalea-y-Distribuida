@@ -1,6 +1,6 @@
 /*
 * Fecha: 2022-03-16
-* Autor: Valeria Bermúdez
+* Autor: Valeria Bermúdez Galván
 * Materia: Computación paralela y distribuida
 *
 */
