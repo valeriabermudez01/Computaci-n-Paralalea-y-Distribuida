@@ -32,7 +32,7 @@ void sampleEnd(){
 	double totalTime;
 	totalTime = (fin.tv_sec - inicio.tv_sec)*1e9;
 	totalTime = (totalTime + (fin.tv_nsec - inicio.tv_nsec))*1e-9;
-	printf ("\nTotal time: %f seg \n", totalTime);
+	printf ("%f \n", totalTime);
 }
 
 /**
@@ -56,8 +56,8 @@ void InitMatrix(int SZ, double *Ma, double *Mb, double *Mr){
     int i,j;
     for(i=0; i < SZ; ++i){
         for(j=0;j<SZ;++j){
-            Ma[j+i*SZ] = 3.9*(i-j);
-            Mb[j+i*SZ] = 2.0*(j+i);
+            Ma[j+i*SZ] = 3.2*(i+j);
+            Mb[j+i*SZ] = 2.4*(j-i);
             Mr[j+i*SZ] = 0.0;
         }
     }
@@ -79,14 +79,16 @@ void initMatrix(int SZ, double *Ma, double *Mb, double *Mr){
 /*Se implementa la impresión (para efectos de validación) */
 void printMatrix(int SZ, double *M){
 	int i,j;
-	for (i=0;i<SZ; ++i){
-		for (j=0;j<SZ; ++j){
-			printf("  %f  ",M[j+i*SZ]);
+	if(SZ < 5){
+		for (i=0;i<SZ; ++i){
+			for (j=0;j<SZ; ++j){
+				printf("  %f  ",M[j+i*SZ]);
+			}
+			printf("\n");
 		}
-		printf("\n");
-	}
 		printf("----------------------------");
 		printf("\n");
+	}
 		
 		
 }
@@ -98,7 +100,7 @@ void printMatrix(int SZ, double *M){
 	@param c: Matriz R resultado de la multiplicación
     ---
 */
-void matrixMultiplyMM1c(int size, double *Ma, double *Mb, double *Mr){
+void MM1c(int size, double *Ma, double *Mb, double *Mr){
 	int i, j;
 	for(i=0; i<size; ++i){
 		for(j=0; j<size; ++j){
@@ -122,7 +124,7 @@ void matrixMultiplyMM1c(int size, double *Ma, double *Mb, double *Mr){
 	@param c: Matriz R resultado de la multiplicación
     ---
 */
-void matrixMultiplyMM1f(int size, double *Ma, double *Mb, double *Mr){
+void MM1f(int size, double *Ma, double *Mb, double *Mr){
   int i, j;
 	for(i=0; i<size; ++i){
 		for(j=0; j<size; ++j){
@@ -165,8 +167,8 @@ void IniciarMatriz(double **Ma, double **Mb, double **Mc, int size){
 	int i, j; /*Indices*/
 	for (i = 0; i < size; ++i){
 		for (j = 0; j < size; ++j){
-			Ma[i][j] = 3.9*(i-j);
-    			Mb[i][j] = 2.0*(j+i);
+				Ma[i][j] = 3.2*(i+j);
+    			Mb[i][j] = 2.4*(i-j);
     			Mc[i][j] = 0.0;
 		}
 	}
@@ -177,7 +179,7 @@ void printMatrizH(double **M, int size){
 	int i, j; /*Indices*/
 	for (i = 0; i < size; ++i)	{
 		for (j = 0; j < size; ++j)	{
-			printf("	%lf", M[i][j]);
+			printf("%f", M[i][j]);
 		}
 		printf("\n");
 	}

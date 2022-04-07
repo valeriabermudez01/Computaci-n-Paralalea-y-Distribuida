@@ -1,5 +1,5 @@
 GCC = gcc 
-FLAGS = -pedantic -Wall
+FLAGS = #-pedantic -Wall 
 CFLAGS = -lm -pthread
 
 PROGS: MM1c MM1f MMPosix

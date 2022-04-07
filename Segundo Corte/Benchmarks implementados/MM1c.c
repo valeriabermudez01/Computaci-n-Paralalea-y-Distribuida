@@ -40,9 +40,11 @@ int main(int argc, char *argv[]) {
 	Mr = Mb + N*N;
 	
 	initMatrix(N, Ma, Mb, Mr);
+
 	sampleStart();
-	matrixMultiplyMM1c(N, Ma, Mb, Mr);
+	MM1c(N, Ma, Mb, Mr);
 	sampleEnd();
+	
 	return 0;
 }
 /*
