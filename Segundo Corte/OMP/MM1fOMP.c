@@ -46,8 +46,8 @@ int main(int argc, char* argv[]){
 	Mc = Mb + N*N;
     initMatrix(N, Ma, Mb, Mc);
     
-    printMatrix(N, Ma);
-    printMatrix(N, Mb);
+    /*printMatrix(N, Ma);
+    printMatrix(N, Mb);*/
     
     sampleStart();
     MM1fOMP(Nthreads, N, Ma, Mb, Mc);
@@ -56,6 +56,6 @@ int main(int argc, char* argv[]){
     // free(Ma);
     // free(Mb);
     // free(Mc);   
-    printMatrix(N, Mc);
+    /*printMatrix(N, Mc);*/
     return EXIT_SUCCESS;
 }
